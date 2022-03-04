@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有和为 0 且不重复的三元组。
+      */
+      /**
+       * @param {number[]} nums
+       * @return {number[][]}
+       */
+
+      let threeSum = function (nums) {
+        let returnArr = [],
+          flag = true,
+          arr = [...nums];
+        for (let a = 0; a < arr.length; a++) {
+          for (let b = a + 1; b < arr.length; b++) {
+            //如果第二次遍历的时候，获取前两个数的和的负数，然后查找剩余的数组中是否存在，不存在直接跳出循环
+            const resetArr = arr.slice(b);
+            const needNum = (arr[a] + arr[b]) * -1;
+            if (resetArr.indexOf(needNum) === -1) continue;
+            for (let c = b + 1; c < arr.length; c++) {
+              if (arr[a] + arr[b] + arr[c] === 0) {
+                //只允许[0,0,0]的情况只存在一次
+                if (arr[a] === 0 && arr[b] === 0 && arr[c] === 0) {
+                  if (flag) {
+                    returnArr.push([arr[a], arr[b], arr[c]]);
+                    flag = false;
+                  }
+                } else {
+                  returnArr.push([arr[a], arr[b], arr[c]]);
+                }
+              }
+            }
+          }
+        }
+        return returnArr;
+      };
+
+      var nums = [0, 0, 0, 0];
+      var list1 = [-1, -2, -3, 1, 2, 3, 4, 5];
+      var list2 = [-1, 0, 1, 2, -1, -4];
+      var list3 = [0, 0, -2, 3, -1, 0];
+      console.log(threeSum(list2));
+
+      // var threeSum = function (nums) {
+      //   let arr = [];
+      //   nums.sort((a, b) => a - b);
+      //   for (let i = 0; i < nums.length; i++) {
+      //     if (nums[i] > 0) break;
+      //     if (i !== 0 && nums[i - 1] === nums[i]) continue;
+      //     let current = null;
+      //     for (let j = i + 1; j < nums.length; j++) {
+      //       if (nums[i] + nums[j] > 0 && nums[j] > 0) break;
+      //       if (current === nums[j]) continue;
+      //       current = nums[j];
+      //       const data = (nums[i] + nums[j]) * -1;
+      //       const index = nums.indexOf(data, j + 1);
+      //       if (index !== -1) {
+      //         arr.push([nums[i], nums[j], nums[index]]);
+      //       }
+      //     }
+      //   }
+      //   return arr;
+      // };
+    </script>
+  </body>
+</html>

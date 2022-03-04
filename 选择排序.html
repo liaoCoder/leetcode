@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>选择排序</title>
+  </head>
+  <body>
+    <script>
+      /*
+      选择排序（Selection sort）是一种简单直观的排序算法。它的工作原理是：第一次从待排序的数据元素中选出最小（或最大）的一个元素，存放在序列的起始位置，然后再从剩余的未排序元素中寻找到最小（大）元素，然后放到已排序的序列的末尾。以此类推，直到全部待排序的数据元素的个数为零。
+      */
+      let list = [2, 3, 4, 5, 3, 4, 1];
+      const selectSort = (arr) => {
+        let returnArr = [],
+          copyArr = [...arr];
+        //当当前的数组的长度和arr的长度一样的时候，表示循环结束
+        while (returnArr.length !== arr.length) {
+          //遍历当前数组
+          let minIndex = 0,
+            min = copyArr[minIndex];
+          for (var u = 0; u < copyArr.length; u++) {
+            //获取当前数组最小值
+            if (copyArr[u] < min) {
+              min = copyArr[u];
+              minIndex = u;
+            }
+            if (u === copyArr.length - 1) {
+              copyArr = [...copyArr.slice(0, minIndex), ...copyArr.slice(minIndex + 1)];
+            }
+          }
+          returnArr.push(min);
+        }
+        return returnArr;
+      };
+      console.log(selectSort(list));
+    </script>
+  </body>
+</html>

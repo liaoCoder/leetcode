@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let list = [2, 3, 4, 5, 3, 4];
+      const insertSort = (arr) => {
+        let returnArr = [arr[0]];
+        //遍历当前数组，因为第一个元素自己和自己比没用，所以下标从1开始
+        for (var i = 1; i < arr.length; i++) {
+          //获取原数组的元素curElem
+          const curElem = arr[i];
+          for (var u = 0; u < returnArr.length; u++) {
+            //获取新数组当前的元素perElem
+            const perElem = returnArr[u];
+            //如果当前元素比之前元素小
+            if (curElem < perElem) {
+              returnArr.splice(u, 0, curElem);
+              break;
+            }
+            if (u === returnArr.length - 1) {
+              returnArr.push(curElem);
+              break;
+            }
+          }
+        }
+        return returnArr;
+      };
+      console.log(insertSort(list));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /**
+        当一个字符串 s 包含的每一种字母的大写和小写形式 同时 出现在 s 中，就称这个字符串 s 是 美好 字符串。比方说，"abABB" 是美好字符串，因为 'A' 和 'a' 同时出现了，且 'B' 和 'b' 也同时出现了。然而，"abA" 不是美好字符串因为 'b' 出现了，而 'B' 没有出现。
+        给你一个字符串 s ，请你返回 s 最长的 美好子字符串 。如果有多个答案，请你返回 最早 出现的一个。如果不存在美好子字符串，请你返回一个空字符串。
+       *
+      */
+      /**
+       * @param {string} s
+       * @return {string}
+       */
+      //  "YazaAay"
+      let teturnstr = "";
+      var longestNiceSubstring = function (s) {
+        var temp = "";
+        //遍历字符串
+        var len = s.length;
+        for (var i = 0; i < len; i++) {
+          //获取当前遍历字符串的大写和小写
+          var upper = s[i].toLocaleUpperCase();
+          var lower = s[i].toLocaleLowerCase();
+          var isUpper = s[i] === upper;
+          var isLower = s[i] === lower;
+          //如果碰到没有美好字符串的话
+          if ((isUpper && s.indexOf(lower) === -1) || (isLower && s.indexOf(upper) === -1)) {
+          }
+        }
+      };
+      console.log(longestNiceSubstring("abavbaAB"));
+      // "Yasdsady"
+    </script>
+  </body>
+</html>

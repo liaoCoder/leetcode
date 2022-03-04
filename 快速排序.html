@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let list = [2, 3, 4, 5, 3, 4];
+      const quickSort = (arr) => {
+        if (arr.length <= 1) return arr;
+        //声明两个数组,并获取中间数
+        let leftArr = [],
+          rightArr = [],
+          middleIndex = Math.floor(arr.length / 2),
+          middleElem = arr[middleIndex];
+        // 遍历当前数组
+        const currentArr = [...arr.slice(0, middleIndex), ...arr.slice(middleIndex + 1)];
+        for (let i = 0; i < currentArr.length; i++) {
+          //如果比中间数小的话放leftArr，如果比中间数大的话放rightArr
+          currentArr[i] > middleElem ? rightArr.push(currentArr[i]) : leftArr.push(currentArr[i]);
+        }
+        return [...quickSort(leftArr), middleElem, ...quickSort(rightArr)];
+      };
+      console.log(quickSort(list));
+    </script>
+  </body>
+</html>

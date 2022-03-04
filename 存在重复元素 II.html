@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>存在重复元素 II</title>
+  </head>
+  <body>
+    <script>
+      // 给你一个整数数组 nums 和一个整数 k ，判断数组中是否存在两个 不同的索引 i 和 j ，满足 nums[i] == nums[j] 且 abs(i - j) <= k 。如果存在，返回 true ；否则，返回 false 。
+      let nums = [1, 0, 1, 1],
+        target = 1;
+      /**
+       * @param {number[]} nums
+       * @param {number} k
+       * @return {boolean}
+       */
+      const containsNearbyDuplicate = function (nums, k) {
+        let order = 0,
+          bool = false;
+        while (order < nums.length) {
+          const currentNum = nums[order];
+          for (let i = 0; i < nums.length; i++) {
+            if (currentNum === nums[i] && Math.abs(order - i) <= k && order !== i) {
+              return true;
+            }
+          }
+          order++;
+        }
+        return bool;
+      };
+      console.log(containsNearbyDuplicate(nums, target));
+    </script>
+  </body>
+</html>

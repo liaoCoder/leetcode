@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 给你一个整数 x ，如果 x 是一个回文整数，返回 true ；否则，返回 false 。
+      // 回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。例如，121 是回文，而 123 不是。
+      /**
+       * @param {number} x
+       * @return {boolean}
+       */
+      const isPalindrome = function (x) {
+        if (typeof x === "number") x = x + "";
+        let str = x;
+        while (str.length > 1) {
+          const left = str.substr(0, 1);
+          const right = str.substr(str.length - 1, str.length);
+          if (left !== right) {
+            return false;
+          }
+          str = str.slice(1, -1);
+        }
+        return true;
+      };
+      console.log(isPalindrome("123212"));
+    </script>
+  </body>
+</html>

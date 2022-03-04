@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        你正在参加一个多角色游戏，每个角色都有两个主要属性：攻击 和 防御 。给你一个二维整数数组 properties ，其中 properties[i] = [attacki, defensei] 表示游戏中第 i 个角色的属性。
+
+        如果存在一个其他角色的攻击和防御等级 都严格高于 该角色的攻击和防御等级，则认为该角色为 弱角色 。更正式地，如果认为角色 i 弱于 存在的另一个角色 j ，那么 attackj > attacki 且 defensej > defensei 。
+
+        返回 弱角色 的数量。
+      */
+      /**
+       * @param {number[][]} properties
+       * @return {number}
+       */
+      const numberOfWeakCharacters = function (properties) {
+        let weakRoleList = {},
+          len = properties.length;
+        for (let i = 0; i < len; i++) {
+          //获取当前角色
+          const currentRole = properties[i];
+          //弱角色只收集一次
+          if (weakRoleList[i]) continue;
+          //如果当前角色已经存在的话，那就不用比较了
+          for (let u = i + 1; u < len; u++) {
+            console.log("执行次数");
+            //获取需要比较角色
+            const compareRole = properties[u];
+            //把两者比较后弱角色放到weakRoleList里
+            if (currentRole[0] > compareRole[0] && currentRole[1] > compareRole[1]) {
+              weakRoleList[u] = compareRole;
+            } else if (currentRole[0] < compareRole[0] && currentRole[1] < compareRole[1]) {
+              weakRoleList[i] = currentRole;
+              break;
+            }
+          }
+        }
+        return Object.keys(weakRoleList).length;
+      };
+      const list1 = [
+        [5, 5],
+        [6, 3],
+        [3, 6],
+      ];
+      const list2 = [
+        [2, 2],
+        [3, 3],
+      ];
+      const list3 = [
+        [1, 5],
+        [10, 4],
+        [4, 3],
+      ];
+      const list4 = [
+        [7, 7],
+        [1, 2],
+        [9, 7],
+        [7, 3],
+        [3, 10],
+        [9, 8],
+        [8, 10],
+        [4, 3],
+        [1, 5],
+        [1, 5],
+      ];
+      const list5 = [
+        [10, 1],
+        [5, 1],
+        [7, 10],
+        [4, 1],
+        [5, 9],
+        [6, 9],
+        [7, 2],
+        [1, 10],
+      ];
+      console.log(numberOfWeakCharacters(list5));
+    </script>
+  </body>
+</html>

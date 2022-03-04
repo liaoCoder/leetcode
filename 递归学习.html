@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let data = [
+        {
+          value: "A",
+          children: [
+            { value: "A1", children: [{ value: "A11" }, { value: "A12" }] },
+            { value: "A2", children: [{ value: "A21" }, { value: "A22" }] },
+            {
+              value: "A3",
+              children: [{ value: "A31" }, { value: "A32", children: [{ value: "A321" }] }],
+            },
+          ],
+        },
+      ];
+
+      //获取id为value的item
+      const onGetData = (list, value) => {
+        let state = {};
+        // (function Recursive(list, value) {
+        //   for (let i = 0; i < list.length; i++) {
+        //     if (list[i].value === value) {
+        //       state = list[i];
+        //     } else if (list[i].children && list[i].children.length > 0) {
+        //       Recursive(list[i].children, value);
+        //     }
+        //   }
+        // })(list, value);
+        for (let i = 0; i < list.length; i++) {
+          if (list[i].value === value) return list[i];
+          else if (list[i].children) {
+            state = onGetData(list[i].children, value);
+          }
+        }
+        return state;
+      };
+
+      console.log(onGetData(data, "A"));
+
+
+      const onRebounce = (list, value) =>{
+        
+      };
+      console.log(onRebounce(data, "A"));
+    </script>
+  </body>
+</html>
